@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3E02E43B4F02C8092C21B4BFF678113299306B50",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F26D88DCD3CA84E98BA7648F7511337184114BBE" : 0,
+    "3E02E43B4F02C8092C21B4BFF678113299306B50" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "30E43360-6674-4D14-9708-74132C448DFD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F26D88DCD3CA84E98BA7648F7511337184114BBE" : "iTunesSearch",
+    "3E02E43B4F02C8092C21B4BFF678113299306B50" : "iTunes"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "iTunesSearch",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "iTunesSearch.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/rsurchi\/iTunesSearchApp.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3E02E43B4F02C8092C21B4BFF678113299306B50"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/rsurchi\/iTunesSearch.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F26D88DCD3CA84E98BA7648F7511337184114BBE"
+    }
+  ]
+}

@@ -33,7 +33,7 @@ static ISNetworkManager* dataControl = nil;
     parameterArray = [parameterArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
     NSString *joinParametersWithPlus = [parameterArray componentsJoinedByString:@"+"];
     
-    NSURL *url = [NSURL URLWithString: [[NSString stringWithFormat:@"%@%@", searchiTunesURL, joinParametersWithPlus] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *url = [NSURL URLWithString: [[NSString stringWithFormat:@"%@%@", searchiTunesURL, joinParametersWithPlus] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
     
     // Initialise the request URL
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[url standardizedURL]];
@@ -46,7 +46,8 @@ static ISNetworkManager* dataControl = nil;
     // Create a weak reference to self to prevent a retain cycle
     __weak typeof(self)weakSelf = self;
     
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable connectionError) {
         // Stop Spinner
         [[NSNotificationCenter defaultCenter] postNotificationName:@"StopSpinning" object:weakSelf];
         
@@ -63,7 +64,7 @@ static ISNetworkManager* dataControl = nil;
         else {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"NoInternetConnection" object:weakSelf];
         }
-    }];
+    }] resume];
 }
 
 -(void)parseJSONResponse:(NSDictionary*)jsonResponse

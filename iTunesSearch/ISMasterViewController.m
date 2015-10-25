@@ -47,7 +47,10 @@
     
     // Initialise UIActivityIndicator
     self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.spinner.center = CGPointMake(160, 240);
+    CGRect frame = self.spinner.frame;
+    frame.origin.x = self.view.frame.size.width / 2 - frame.size.width / 2;
+    frame.origin.y = self.view.frame.size.height / 2 - frame.size.height / 2;
+    self.spinner.frame = frame;
     self.spinner.hidesWhenStopped = YES;
     self.spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     // Make the spinner a bit bigger

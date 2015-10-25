@@ -22,7 +22,7 @@
 		<key>3E02E43B4F02C8092C21B4BFF678113299306B50</key>
 		<string>../..</string>
 		<key>F26D88DCD3CA84E98BA7648F7511337184114BBE</key>
-		<string>../../../iTunesSearch</string>
+		<string>../..Search</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/rsurchi/iTunesSearchApp.git</string>
