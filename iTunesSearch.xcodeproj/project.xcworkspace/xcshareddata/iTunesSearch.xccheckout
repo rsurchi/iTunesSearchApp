@@ -10,6 +10,8 @@
 	<string>iTunesSearch</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>3E02E43B4F02C8092C21B4BFF678113299306B50</key>
+		<string>https://github.com/rsurchi/iTunesSearchApp.git</string>
 		<key>F26D88DCD3CA84E98BA7648F7511337184114BBE</key>
 		<string>https://github.com/rsurchi/iTunesSearch.git</string>
 	</dict>
@@ -17,17 +19,27 @@
 	<string>iTunesSearch.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>F26D88DCD3CA84E98BA7648F7511337184114BBE</key>
+		<key>3E02E43B4F02C8092C21B4BFF678113299306B50</key>
 		<string>../..</string>
+		<key>F26D88DCD3CA84E98BA7648F7511337184114BBE</key>
+		<string>../../../iTunesSearch</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/rsurchi/iTunesSearch.git</string>
+	<string>https://github.com/rsurchi/iTunesSearchApp.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>F26D88DCD3CA84E98BA7648F7511337184114BBE</string>
+	<string>3E02E43B4F02C8092C21B4BFF678113299306B50</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3E02E43B4F02C8092C21B4BFF678113299306B50</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iTunes</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

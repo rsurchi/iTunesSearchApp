@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CAB3EDD1BDCFDCB009A50C5 /* testResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB3EDC1BDCFDCB009A50C5 /* testResponse.json */; };
 		AD2908671A50809600C626F6 /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD2908661A50809600C626F6 /* placeholder.jpg */; };
 		AD2908691A5084A100C626F6 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2908681A5084A100C626F6 /* Main_iPhone.storyboard */; };
 		AD7038431A48B5750004C3C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD7038421A48B5750004C3C6 /* Foundation.framework */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6CAB3EDC1BDCFDCB009A50C5 /* testResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testResponse.json; sourceTree = "<group>"; };
 		AD2908661A50809600C626F6 /* placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = placeholder.jpg; path = images/placeholder.jpg; sourceTree = "<group>"; };
 		AD2908681A5084A100C626F6 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		AD70383F1A48B5750004C3C6 /* iTunesSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +176,7 @@
 			children = (
 				AD70386F1A48B5750004C3C6 /* iTunesSearchTests-Info.plist */,
 				AD7038701A48B5750004C3C6 /* InfoPlist.strings */,
+				6CAB3EDC1BDCFDCB009A50C5 /* testResponse.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CAB3EDD1BDCFDCB009A50C5 /* testResponse.json in Resources */,
 				AD7038721A48B5750004C3C6 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,7 +12,6 @@
 static NSString * const searchiTunesURL = @"http://itunes.apple.com/search?term=";
 
 @interface ISNetworkManager ()
-@property (nonatomic) ISiTunesTrack *currentTrack;
 @end
 
 @implementation ISNetworkManager
@@ -55,28 +54,7 @@ static ISNetworkManager* dataControl = nil;
         if (!connectionError) {
             // Parse the JSON response
             NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            
-            // Reset array
-            _resultsArray = [[NSMutableArray alloc] init];
-            weakSelf.resultsCount = [[jsonResponse objectForKey:@"resultCount"] stringValue];
-            NSArray *resultsArray = [jsonResponse objectForKey:@"results"];
-            
-            for (NSObject *resultTrack in resultsArray) {
-                weakSelf.currentTrack = [[ISiTunesTrack alloc] init];
-                weakSelf.currentTrack.trackName = [resultTrack valueForKey:@"trackName"];
-                weakSelf.currentTrack.artist = [resultTrack valueForKey:@"artistName"];
-                weakSelf.currentTrack.album = [resultTrack valueForKey:@"collectionName"];
-                weakSelf.currentTrack.thumbnailURL = [NSURL URLWithString:[resultTrack valueForKey:@"artworkUrl60"]];
-                weakSelf.currentTrack.artworkURL = [NSURL URLWithString:[resultTrack valueForKey:@"artworkUrl100"]];
-                weakSelf.currentTrack.price = [weakSelf roundUpPrice:[NSNumber numberWithFloat:[[resultTrack valueForKey:@"trackPrice"] floatValue]]];
-                
-                NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-                [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-                weakSelf.currentTrack.releaseDate = [dateFormat dateFromString:[resultTrack valueForKey:@"releaseDate"]];
-                weakSelf.currentTrack.releaseDateString = [weakSelf createDateString:weakSelf.currentTrack.releaseDate];
-                
-                [weakSelf.resultsArray addObject:weakSelf.currentTrack];
-            }
+            [weakSelf parseJSONResponse:jsonResponse];
             
             // Call delegate method
             [weakSelf.delegate resultsArrayHasBeenRepopulated:weakSelf];
@@ -88,7 +66,32 @@ static ISNetworkManager* dataControl = nil;
     }];
 }
 
--(NSString*)createDateString:(NSDate*)date
+-(void)parseJSONResponse:(NSDictionary*)jsonResponse
+{
+    // Reset array
+    _resultsArray = [[NSMutableArray alloc] init];
+    self.resultsCount = [[jsonResponse objectForKey:@"resultCount"] stringValue];
+    NSArray *responseArray = [jsonResponse objectForKey:@"results"];
+    
+    for (NSObject *resultTrack in responseArray) {
+        ISiTunesTrack *currentTrack = [[ISiTunesTrack alloc] init];
+        currentTrack.trackName = [resultTrack valueForKey:@"trackName"];
+        currentTrack.artist = [resultTrack valueForKey:@"artistName"];
+        currentTrack.album = [resultTrack valueForKey:@"collectionName"];
+        currentTrack.thumbnailURL = [NSURL URLWithString:[resultTrack valueForKey:@"artworkUrl60"]];
+        currentTrack.artworkURL = [NSURL URLWithString:[resultTrack valueForKey:@"artworkUrl100"]];
+        currentTrack.price = [ISNetworkManager roundUpPrice:[NSNumber numberWithFloat:[[resultTrack valueForKey:@"trackPrice"] floatValue]]];
+        
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+        currentTrack.releaseDate = [dateFormat dateFromString:[resultTrack valueForKey:@"releaseDate"]];
+        currentTrack.releaseDateString = [ISNetworkManager createDateString:currentTrack.releaseDate];
+        
+        [_resultsArray addObject:currentTrack];
+    }
+}
+
++(NSString*)createDateString:(NSDate*)date
 {
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
     NSInteger day = [components day];
@@ -99,7 +102,7 @@ static ISNetworkManager* dataControl = nil;
     return newDate;
 }
 
--(NSString*)roundUpPrice:(NSNumber*)price
++(NSString*)roundUpPrice:(NSNumber*)price
 {
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];

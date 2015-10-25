@@ -29,4 +29,27 @@
  **/
 -(void)searchForTrackWithString:(NSString*)string;
 
+/**
+ * Parse JSON response
+ *
+ * @param NSDictionary JSON dictionary
+ * @return None
+ **/
+-(void)parseJSONResponse:(NSDictionary*)jsonResponse;
+
+/**
+ * Create a date string from an NSDate in the format DD/MM/YYYY
+ *
+ * @param NSDate date
+ * @return NSString date
+ **/
++(NSString*)createDateString:(NSDate*)date;
+
+/**
+ * Round up price to two decimal places and convert to NSString
+ *
+ * @param NSNumber price
+ * @return NSString string
+ **/
++(NSString*)roundUpPrice:(NSNumber*)price;
 @end
