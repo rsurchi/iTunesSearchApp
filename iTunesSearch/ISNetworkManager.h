@@ -19,7 +19,7 @@
 @property (strong, nonatomic) NSString *resultsCount;
 @property (nonatomic, weak) id <NetworkManagerDelegate> delegate;
 
-+(id)dataControl;
++ (id)dataControl;
 
 /**
  * Send an asynchronous request to the searchiTunesURL using a search string
@@ -27,7 +27,7 @@
  * @param string Search string
  * @return None
  **/
--(void)searchForTrackWithString:(NSString*)string;
+- (void)searchForTrackWithString:(NSString*)string;
 
 /**
  * Parse JSON response
@@ -35,7 +35,7 @@
  * @param NSDictionary JSON dictionary
  * @return None
  **/
--(void)parseJSONResponse:(NSDictionary*)jsonResponse;
+- (void)parseJSONResponse:(NSDictionary*)jsonResponse;
 
 /**
  * Create a date string from an NSDate in the format DD/MM/YYYY
@@ -43,7 +43,7 @@
  * @param NSDate date
  * @return NSString date
  **/
-+(NSString*)createDateString:(NSDate*)date;
++ (NSString*)createDateString:(NSDate*)date;
 
 /**
  * Round up price to two decimal places and convert to NSString
@@ -51,5 +51,6 @@
  * @param NSNumber price
  * @return NSString string
  **/
-+(NSString*)roundUpPrice:(NSNumber*)price;
++ (NSString*)roundUpPrice:(NSNumber*)price;
+
 @end

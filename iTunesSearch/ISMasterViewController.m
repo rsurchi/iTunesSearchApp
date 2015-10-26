@@ -74,7 +74,7 @@
     [self.imageDownloadOperationQueue cancelAllOperations];
 }
 
--(void)dealloc
+- (void)dealloc
 {
     // Remove observers
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"NoInternetConnection" object:nil];
@@ -91,11 +91,13 @@
 
 - (void) toggleSpinnerVisibility:(NSNotification *) notification
 {
+    // Start spinnning the UIActivityIndicatorView
     if ([[notification name] isEqualToString:@"StartSpinning"]) {
         self.spinner.hidden = NO;
         [self.spinner startAnimating];
     }
     
+    // Stop spinnning the UIActivityIndicatorView
     if ([[notification name] isEqualToString:@"StopSpinning"])
         [self.spinner stopAnimating];
 }
@@ -106,7 +108,7 @@
 }
 
 #pragma mark - dataController delegate
--(void)resultsArrayHasBeenRepopulated:(ISNetworkManager *)sender
+- (void)resultsArrayHasBeenRepopulated:(ISNetworkManager *)sender
 {
     // Bring tableView and spinner views back to the front
     [self.view bringSubviewToFront:self.tableView];
@@ -176,7 +178,7 @@
     [currentCell cancelDownload];
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80;
 }
@@ -196,6 +198,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    // Move to track detail view
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         ISiTunesTrack *object = _searchResultsArray[indexPath.row];

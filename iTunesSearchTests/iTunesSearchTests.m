@@ -48,13 +48,13 @@
 }
 
 
--(void)testParseJSONResponse {
+- (void)testParseJSONResponse {
     NSDictionary *jsonArray = [iTunesSearchTests dataFromJSONFileNamed:@"testResponse"];
     [self.networkManager parseJSONResponse:jsonArray];
     XCTAssertTrue(2 == self.networkManager.resultsArray.count, @"2 tracks entered.");
 }
 
--(void)testCreateDateString {
+- (void)testCreateDateString {
     NSDateComponents *comps = [[NSDateComponents alloc] init];
     [comps setDay:10];
     [comps setMonth:11];
@@ -65,7 +65,7 @@
     XCTAssertEqualObjects(expectedDateString, dateString, @"The date string did not match the expected date");
 }
 
--(void)testRoundUpPrice {
+- (void)testRoundUpPrice {
     NSNumber *aDouble = [NSNumber numberWithDouble:26.32873];
     NSString *roundedUpPrice = [ISNetworkManager roundUpPrice:aDouble];
     NSString *expectedRoundedUpPrice = @"26.33";

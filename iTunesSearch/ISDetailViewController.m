@@ -69,7 +69,7 @@
     [self adjustLayoutAndCenterSubviews];
 }
 
--(void)viewDidLayoutSubviews
+- (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     
@@ -77,7 +77,7 @@
     [self adjustLayoutAndCenterSubviews];
 }
 
--(void)viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
@@ -85,7 +85,7 @@
     self.detailScrollView.delegate = nil;
 }
 
--(void)viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
@@ -97,7 +97,7 @@
 
 #pragma mark - ScrollView delegate methods
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if (scrollView == self.detailScrollView)
     {
@@ -126,7 +126,7 @@
 
 #pragma mark - Other functions
 
--(void)adjustLayoutAndCenterSubviews
+- (void)adjustLayoutAndCenterSubviews
 {
     // Center the artwork image view in the topImageView
     self.artWorkImageView.center = [self.topImageView convertPoint:self.topImageView.center fromView:self.topImageView.superview];

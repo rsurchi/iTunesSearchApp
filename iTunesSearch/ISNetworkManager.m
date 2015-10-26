@@ -17,7 +17,7 @@ static NSString * const searchiTunesURL = @"http://itunes.apple.com/search?term=
 @implementation ISNetworkManager
 static ISNetworkManager* dataControl = nil;
 
--(id)init
+- (id)init
 {
     self = [super init];
     if(self)
@@ -27,7 +27,7 @@ static ISNetworkManager* dataControl = nil;
     return self;
 }
 
--(void)searchForTrackWithString:(NSString*)string {
+- (void)searchForTrackWithString:(NSString*)string {
     // Separate words by whitespace and put them in an array
     NSArray *parameterArray = [string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     parameterArray = [parameterArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
@@ -52,7 +52,6 @@ static ISNetworkManager* dataControl = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             // Stop Spinner
             [[NSNotificationCenter defaultCenter] postNotificationName:@"StopSpinning" object:weakSelf];
-            
             // If there are no errors then handle the response
             if (!connectionError) {
                     // Parse the JSON response
@@ -70,7 +69,7 @@ static ISNetworkManager* dataControl = nil;
     }] resume];
 }
 
--(void)parseJSONResponse:(NSDictionary*)jsonResponse
+- (void)parseJSONResponse:(NSDictionary*)jsonResponse
 {
     // Reset array
     _resultsArray = [[NSMutableArray alloc] init];
@@ -91,11 +90,12 @@ static ISNetworkManager* dataControl = nil;
         currentTrack.releaseDate = [dateFormat dateFromString:[resultTrack valueForKey:@"releaseDate"]];
         currentTrack.releaseDateString = [ISNetworkManager createDateString:currentTrack.releaseDate];
         
+        // Add track to resultsArray array
         [_resultsArray addObject:currentTrack];
     }
 }
 
-+(NSString*)createDateString:(NSDate*)date
++ (NSString*)createDateString:(NSDate*)date
 {
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
     NSInteger day = [components day];
@@ -106,7 +106,7 @@ static ISNetworkManager* dataControl = nil;
     return newDate;
 }
 
-+(NSString*)roundUpPrice:(NSNumber*)price
++ (NSString*)roundUpPrice:(NSNumber*)price
 {
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];

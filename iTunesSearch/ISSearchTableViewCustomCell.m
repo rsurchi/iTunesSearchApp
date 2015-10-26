@@ -52,6 +52,7 @@ NSString * const  SearchTableViewCellIdentifier = @"SearchTableViewCell";
             if (imageData)
                 loadedImage = [UIImage imageWithData:imageData];
             
+            // Load image on main queue
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 ISSearchTableViewCustomCell *originalCell = (id)currentCell();
                 originalCell.thumbnailView.image = loadedImage;
