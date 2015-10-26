@@ -53,12 +53,14 @@ static ISNetworkManager* dataControl = nil;
         
         // If there are no errors then handle the response
         if (!connectionError) {
-            // Parse the JSON response
-            NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            [weakSelf parseJSONResponse:jsonResponse];
-            
-            // Call delegate method
-            [weakSelf.delegate resultsArrayHasBeenRepopulated:weakSelf];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Parse the JSON response
+                NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                [weakSelf parseJSONResponse:jsonResponse];
+                
+                // Call delegate method
+                [weakSelf.delegate resultsArrayHasBeenRepopulated:weakSelf];
+            });
         }
         // If there is a connection error, then post a "NoInternetConnection" notification.
         else {
