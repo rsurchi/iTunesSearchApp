@@ -48,24 +48,25 @@ static ISNetworkManager* dataControl = nil;
     
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable connectionError) {
-        // Stop Spinner
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"StopSpinning" object:weakSelf];
-        
-        // If there are no errors then handle the response
-        if (!connectionError) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // Parse the JSON response
-                NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                [weakSelf parseJSONResponse:jsonResponse];
-                
-                // Call delegate method
-                [weakSelf.delegate resultsArrayHasBeenRepopulated:weakSelf];
-            });
-        }
-        // If there is a connection error, then post a "NoInternetConnection" notification.
-        else {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"NoInternetConnection" object:weakSelf];
-        }
+        // Run on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Stop Spinner
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"StopSpinning" object:weakSelf];
+            
+            // If there are no errors then handle the response
+            if (!connectionError) {
+                    // Parse the JSON response
+                    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                    [weakSelf parseJSONResponse:jsonResponse];
+                    
+                    // Call delegate method
+                    [weakSelf.delegate resultsArrayHasBeenRepopulated:weakSelf];
+            }
+            // If there is a connection error, then post a "NoInternetConnection" notification.
+            else {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"NoInternetConnection" object:weakSelf];
+            }
+        });
     }] resume];
 }
 
